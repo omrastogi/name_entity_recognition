@@ -1,4 +1,3 @@
-import torch
 from transformers import pipeline
 from transformers import RobertaTokenizer, RobertaForTokenClassification
 
@@ -8,7 +7,11 @@ class RobertaNER:
         self.tokenizer = RobertaTokenizer.from_pretrained("Jean-Baptiste/roberta-large-ner-english")
         self.model = RobertaForTokenClassification.from_pretrained("Jean-Baptiste/roberta-large-ner-english")
 
-    def get_entity(self, text):
+    def get_entity(self, text: str) -> list:
+        """
+        :param text: text needed to be inferenced
+        :return: return a list of ['tags', 'words']
+        """
         nlp = pipeline("ner", model=self.model, tokenizer=self.tokenizer)
         entities = nlp(text)
         words = []

@@ -1,4 +1,4 @@
-def get_data():
+def get_data() -> list:
     story, para, lines = [], "", [i.strip('\n') for i in open('text.txt')]
     for line in lines:
         if line == "":
